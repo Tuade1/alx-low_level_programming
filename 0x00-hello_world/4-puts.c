@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * main - Entry point
+ * main - Entry point, this is where the program starts from
  *
  * print programming is like building a multilingual puzzle
  *
@@ -10,7 +10,7 @@
 
 int main(void)
 {
-	char program[100] = "Programming is like building a multilingual puzzle";
+	char program[100] = "\"Programming is like building a multilingual puzzle";
 
 	puts(program);
 
