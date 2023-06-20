@@ -9,9 +9,9 @@
 
 int _islower(int c)
 {
-	int i = 'a';
+	int c;
 
-	if (islower(i))
+	if (islower(c))
 	{
 		return (1);
 	} else
