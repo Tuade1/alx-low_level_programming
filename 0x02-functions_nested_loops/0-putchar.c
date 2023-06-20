@@ -1,19 +1,19 @@
-#include <main.h>
+#include "main.h"
 /**
  *main - entry point to print _putchar
- *print _putchar
+ *@c print _putchar
  *Return: Always 0 (success)
  */
 int main(void)
 {
-	_putchar('_');
-	_putchar('p');
-	_putchar('u');
-	_putchar('t');
-	_putchar('c');
-	_putchar('h');
-	_putchar('a');
-	_putchar('r');
+	char name[] = "_putchar";
+	int i = 0;
+
+	while (name[i] != '\0')
+	{
+		_putchar(name[i]);
+		i++;
+	}
 	_putchar('\n');
 	return (0);
 }
