@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * print_numbers - print out numbers 0 to 9
  * Description: you can only use _putchar twice
@@ -6,11 +7,12 @@
 
 void print_numbers(void)
 {
-	int i;
+	int i = 0;
 
-	for (i = 0; i < 10; i++)
+	while (i < 10)
 	{
 		_putchar(i);
+		i++;
 	}
 	_putchar('\n');
 }
