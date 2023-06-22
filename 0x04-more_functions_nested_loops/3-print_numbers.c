@@ -1,7 +1,7 @@
 #include "main.h"
 /**
- * print_numbers - print out numbers
- * Return: void
+ * print_numbers - print out numbers 0 to 9
+ * Description: you can only use _putchar twice
  */
 
 void print_numbers(void)
