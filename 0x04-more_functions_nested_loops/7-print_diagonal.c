@@ -4,7 +4,7 @@
  * @n: the number of lines to be printed
  */
 
-void print_diagonal(int n);
+void print_diagonal(int n)
 {
 	int i, j;
 
