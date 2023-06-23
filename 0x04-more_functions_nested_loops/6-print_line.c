@@ -1,0 +1,20 @@
+#include "main.h"
+
+/**
+ * print_line - to print lines
+ * @n: the number of lines to be printed
+ * Desciption: to print lines that end with a newline character
+ */
+
+void print_line(int n)
+{
+	while (n > 0)
+	{
+		if (n <= 0)
+		{
+			_putchar('\n');
+		}
+		putchar('_');
+		i--;
+	}
+}
