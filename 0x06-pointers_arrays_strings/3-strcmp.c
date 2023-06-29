@@ -20,7 +20,7 @@ int _strcmp(char *s1, char *s2)
 
 	if (i > j)
 	{
-		k = -1;
+		k = 1;
 	}
 	if (i == j)
 	{
@@ -28,7 +28,7 @@ int _strcmp(char *s1, char *s2)
 	}
 	if (i < j)
 	{
-		k = 1;
+		k = -1;
 	}
 	return (k);
 }
