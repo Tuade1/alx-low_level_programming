@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * leet - function to encrypt using rot13
- * @i: the encryption
+ * leet - function to encode a string into 1337
+ * @i: the string
  * Return: i
  */
 
@@ -22,7 +22,7 @@ char *leet(char *i)
 				i[a] = s2[b];
 			}
 		}
-		i++;
+		a++;
 	}
 	return (i);
 }
