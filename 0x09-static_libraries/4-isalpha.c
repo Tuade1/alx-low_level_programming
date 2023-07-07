@@ -1,5 +1,5 @@
 #include "main.h"
-#include <ctype.h>
+
 /**
   * _isalpha - returns 1 or 0
   *@c: chech is _isalpha
