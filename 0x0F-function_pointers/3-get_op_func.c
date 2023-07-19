@@ -2,7 +2,8 @@
 #include <stdio.h>
 
 /**
- * get_op_func - function that selects the correct function to perform the operation
+ * get_op_func - function that selects the correct function to perform
+ * the operation
  * @s: the operator to be passed as argument to the program
  * Return: a pointer to the function
  */
@@ -18,9 +19,9 @@ int (*get_op_func(char *s))(int, int)
 	};
 	int i = 0;
 
-	while (i < 5)
+	while (ops[i].op < 5)
 	{
-		if (ops[i].op == s)
+		if (ops[i].op[0] == s[0])
 		{
 			return (ops[i].f);
 		}
