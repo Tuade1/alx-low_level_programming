@@ -12,7 +12,7 @@
 int main(int argc, char *argv[])
 {
 	int num_bytes, i;
-	char *main_a = (char *)main;
+	unsigned char *main_a = (unsigned char *)main;
 
 	if (argc != 2)
 	{
