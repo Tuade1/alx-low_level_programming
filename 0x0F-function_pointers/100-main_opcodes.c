@@ -12,9 +12,9 @@
 int main(int argc, char *argv[])
 {
 	int num_bytes, i;
-	char *main_a = main;
+	char *main_a = (char *)main;
 
-	if argc != 2)
+	if (argc != 2)
 	{
 		printf("Error\n");
 		return (1);
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 
 	for (i = 0; i < num_bytes; i++)
 	{
-		printf("02x", main_a[i]);
+		printf("%02x", main_a[i]);
 	}
 	printf("\n");
 	return (0);
