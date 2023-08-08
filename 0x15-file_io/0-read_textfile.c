@@ -28,9 +28,9 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	{
 		c = fgetc(fp);
 
-		if ('c' == EOF)
+		if (c == EOF)
 			break;
-		_putchar(c);
+		fprintf(stdout, "%c", c);
 		count++;
 	}
 	fclose(fp);
