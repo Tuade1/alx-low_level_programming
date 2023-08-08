@@ -12,32 +12,41 @@
 
 int main(int argc, char *argv[])
 {
-	FILE *fp1, *fp2;
-	size_t read_size;
-	int a, b;
+	int in_fd, out_fd, istat, ostat;
 	char buf[MAXSIZE];
+	mode_t mode;
 
-	if (argc != 3)
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit(97);
-	fp1 = fopen(argv[1], "r");
-	if (fp1 == NULL)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		exit(98);
-	}
-	fp2 = fopen(argv[2], "w");
-	if (fp2 == NULL)
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
-	while ((read_size = fread(buf, 1, sizeof(buf), fp1)) > 0)
-	{
-		fwrite(buf, 1, read_size, fp2);
-	}
-
-	a = fclose(fp1);
-	b = fclose(fp2);
-	if (fclose(fp1) == -1)
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", a), exit(100);
-	if (fclose(fp2) == -1)
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", b), exit(100);
+	mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+	if (ac != 3)
+		dprintf(SE, "Usage: cp file_from file_to\n"), exit(97);
+	in_fd = open(av[1], O_RDONLY);
+	if (in_fd == -1)
+		dprintf(SE, "Error: Can't read from file %s\n", av[1]), exit(98);
+	out_fd = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, mode);
+	if (out_fd == -1)
+		dprintf(SE, "Error: Can't write to %s\n", av[2]), exit(99);
+	do {
+		istat = read(input_fd, buf, MAXSIZE);
+		if (istat == -1)
+		{
+			dprintf(SE, "Error: Can't read from file %s\n", av[1]);
+			exit(98);
+		}
+		if (istat > 0)
+		{
+			ostat = write(out_fd, buf, (ssize_t) istat);
+			if (ostat == -1)
+			{
+				dprintf(SE, "Error: Can't write to %s\n", av[2]);
+				exit(99);
+			}
+		}
+	} while (istat > 0);
+	istat = close(in_fd);
+	if (istat == -1)
+		dprintf(SE, "Error: Can't close fd %d\n", in_fd), exit(100);
+	ostat = close(out_fd);
+	if (ostat == -1)
+		dprintf(SE, "Error: Can't close fd %d\n", out_fd), exit(100);
 	return (0);
 }
