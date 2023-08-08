@@ -1,6 +1,6 @@
-#include <main.h>
+#include "main.h"
 #include <stdlib.h>
-
+#include <stdio.h>
 /**
  * read_textfile - function that reads a text and prints it to the POSIX
  * @filename: the name of the file to be read and printed
@@ -13,7 +13,8 @@ ssize_t read_textfile(const char *filename, size_t letters)
 {
 	FILE *fp = NULL;
 	ssize_t count = 0;
-	ssize_t i;
+	size_t i;
+	int c;
 
 	if (filename == NULL)
 		return (0);
@@ -23,13 +24,14 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (fp == NULL)
 		return (0);
 
-	while (!feof(fp))
+	for (i = 0; i < letters; i++)
 	{
-		for (i = 0, fp[i] != letters; i++)
-		{
-			_putchar(fp);
-			count++;
-		}
+		c = fgetc(fp);
+
+		if ('c' == EOF)
+			break;
+		_putchar(c);
+		count++;
 	}
 	fclose(fp);
 	return (count);
