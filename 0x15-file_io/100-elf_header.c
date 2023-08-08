@@ -31,13 +31,16 @@ void print_error(const char *msg)
 void print_elf_header_info(const char *filename)
 {
 	int fd = open(filename, O_RDONLY);
+	int i;
+	Elf64_Ehdr header;
+	ssize_t num_read;
 
 	if (fd == -1)
 	{
 		perror("Error opening file"), exit(98);
 	}
-	Elf64_Ehdr header;
-	ssize_t num_read = read(fd, &header, sizeof(header));
+	
+	num_read = read(fd, &header, sizeof(header));
 
 	if (num_read != sizeof(header))
 	{
@@ -50,7 +53,7 @@ void print_elf_header_info(const char *filename)
 		print_error("Not an ELF file");
 	}
 	printf("Magic:   ");
-	for (int i = 0; i < ELF_MAGIC_SIZE; ++i)
+	for (i = 0; i < ELF_MAGIC_SIZE; ++i)
 	{
 		printf("%02x ", header.e_ident[i]);
 	}

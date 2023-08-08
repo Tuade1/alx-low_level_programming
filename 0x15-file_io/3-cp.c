@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAXSIZE 1024
-
+#define SE STDERR_FILENO
 /**
  * main - program that copies a file to another file
  * @argc: the count of argument passed
@@ -17,19 +17,19 @@ int main(int argc, char *argv[])
 	mode_t mode;
 
 	mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
-	if (ac != 3)
+	if (argc != 3)
 		dprintf(SE, "Usage: cp file_from file_to\n"), exit(97);
-	in_fd = open(av[1], O_RDONLY);
+	in_fd = open(argv[1], O_RDONLY);
 	if (in_fd == -1)
-		dprintf(SE, "Error: Can't read from file %s\n", av[1]), exit(98);
-	out_fd = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, mode);
+		dprintf(SE, "Error: Can't read from file %s\n", argv[1]), exit(98);
+	out_fd = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, mode);
 	if (out_fd == -1)
-		dprintf(SE, "Error: Can't write to %s\n", av[2]), exit(99);
+		dprintf(SE, "Error: Can't write to %s\n", argv[2]), exit(99);
 	do {
-		istat = read(input_fd, buf, MAXSIZE);
+		istat = read(in_fd, buf, MAXSIZE);
 		if (istat == -1)
 		{
-			dprintf(SE, "Error: Can't read from file %s\n", av[1]);
+			dprintf(SE, "Error: Can't read from file %s\n", argv[1]);
 			exit(98);
 		}
 		if (istat > 0)
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 			ostat = write(out_fd, buf, (ssize_t) istat);
 			if (ostat == -1)
 			{
-				dprintf(SE, "Error: Can't write to %s\n", av[2]);
+				dprintf(SE, "Error: Can't write to %s\n", argv[2]);
 				exit(99);
 			}
 		}
