@@ -25,5 +25,8 @@ int create_file(const char *filename, char *text_content)
 		fprintf(fp, "%s", text_content);
 
 	fclose(fp);
+
+	if (chmod(filename, S_IRUSR | S_IWUSR) != 0)
+		return (-1);
 	return (1);
 }
