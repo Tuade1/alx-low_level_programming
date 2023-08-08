@@ -30,7 +30,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 		if (c == EOF)
 			break;
-		fprintf(stdout, "%c", c);
+		write(STDOUT_FILENO, &c, 1);
 		count++;
 	}
 	fclose(fp);
